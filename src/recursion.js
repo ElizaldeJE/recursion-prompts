@@ -76,24 +76,26 @@ var range = function(x, y) {
 // exponent(4,3); // 64
 // https://www.khanacademy.org/computing/computer-science/algorithms/recursive-algorithms/a/computing-powers-of-a-number
 var exponent = function(base, exp) {
-  if (exp === 0){
-    return 1; }
-  return exp > 0 ? base * exponent(base, exp - 1) : 1 / (base * exponent(base, -1 * exp - 1));
-};
+      if(exp === 0) {
+          return 1;
+      }
+      if(exp < 0){
+        return 1 / exponent(base, -exp)
+      }
+        return base * exponent(base, exp - 1);
+  }
 // 8. Determine if a number is a power of two.
 // powerOfTwo(1); // true
 // powerOfTwo(16); // true
 // powerOfTwo(10); // false
 var powerOfTwo = function(n) {
   if (n === 1) {
-    return true;
-  } else if (n === 2) {
-    return true;
-  } else if (n % 5 === 0) {
-    return false;
-  } else {
-    return powerOfTwo(n / 2);
-  }
+     return true;
+   } else if (n < 1) {
+     return false;
+   } else {
+     return powerOfTwo(n / 2)
+   }~
 };
 // 9. Write a function that reverses a string.
 var reverse = function(string) {
@@ -105,16 +107,24 @@ var reverse = function(string) {
 };
 // 10. Write a function that determines if a string is a palindrome.
 var palindrome = function(string) {
-};
-
+  var newString = string.toLowerCase().replace(/\s/g, '')
+  if(newString.length === 0 || newString.length === 1){
+    return true;
+  }
+  if(newString[0] === newString[newString.length-1]){
+    return palindrome(newString.slice(1, newString.length-1))
+  } else {
+    return false
+  }
+}
 // 11. Write a function that returns the remainder of x divided by y without using the
 // modulo (%) operator.
 // modulo(5,2) // 1
 // modulo(17,5) // 2
 // modulo(22,6) // 4
 var modulo = function(x, y) {
-};
 
+};
 // 12. Write a function that multiplies two numbers without using the * operator or
 // Math methods.
 var multiply = function(x, y) {
